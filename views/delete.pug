@@ -1,0 +1,14 @@
+extends layout.pug 
+
+block contactspage 
+    h1 Delete Contact 
+    h1 #{contact.firstname} #{contact.lastname}
+    p Are you sure you want to delete this contact?
+    form(action='/'+ contact.id +"/delete", methods = "post")
+    
+        button(type="submit") Yes! 
+        a (href='/') Nevermind 
+        if message 
+            p #{message}
+
+//- html does not suppoprt delete http?? so it is handeled as delete in the server side 

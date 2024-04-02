@@ -1,0 +1,20 @@
+Doctype 
+html 
+    head 
+        title P2 Contacts 
+        link(rel ='stylesheet', href = 'https://cdn.jsdelivr.net/npm/water.css@2/out/light.css')
+    body 
+        if !hideLogin
+            if user 
+                span #{user.username}
+                a(href="/logout")  Sign Out
+            else 
+                a(href="/login")  Sign In 
+            block contactspage
+
+//- if the button is not hidden 
+//- # is used to dynamicaly insert the username, so it is like <span>Rika</span> 
+//- span is used instead of p because inline, if p then it shows additional space. 
+//- so for example if the user is logged in, it will show the username of that user when the user moves around the page
+//- or it will show the sign in button at the to, the blue one.
+//- then only it spans the other content, so like the other content will extend from this template header like layout

@@ -1,0 +1,58 @@
+extends layout.pug 
+
+block contactspage
+    h1 Create Contact
+    form(action ="/create", method ="post")
+        fieldset
+            legend Basic Information 
+            section
+                label(for="firstname") First Name:
+            section 
+                label(for="lastname") Last Name: 
+                input(type ="text", name = "lastname")
+            section 
+                label(for="phone") Phone:
+                input(type="text", name= "phone")
+            section 
+                label(for="email") Email:
+                input(type="text", name ="email")
+        fieldset 
+            legend Address 
+            section 
+                label(for="street") Street: 
+                input(type="text", name = "street")
+            section
+                label(for="city") City: 
+                input(type="text", name ="city")
+            section
+                label(for="state") State: 
+                input(type="text", name ="state")
+            section 
+                label(for="zip") Zip: 
+                input(type="text", name ="zip")
+            section 
+                label(for="country") Country: 
+                input(type="text", name ="country")
+        fieldset 
+            legend Contact 
+            section 
+                input(type ="checkbox", name ="Contact_By_Phone")
+                label(for="Contact_By_Phone") Contact by Phone 
+            section
+                input(type ="checkbox", name ="Contact_By_Email")
+                label(for="Contact_By_Email") Contact by Email   
+            section
+                input(type ="checkbox", name ="Contact_By_Mail")
+                label(for="Contact_By_Mail") Contact by Mail 
+                
+
+            button(type="submit") Add
+            a(href='/') Cancel 
+            if message 
+                p #{message}
+
+    
+//- fieldset groups elements together in a form, whereas legend provides context or info
+//- input takes in the input value in the form of text           
+//- message is used to print out error message, like form error or server ko error 
+//- dont forget to test in codepen!! 
