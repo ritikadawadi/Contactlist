@@ -1,0 +1,22 @@
+extends layout.pug
+
+block contactspage
+    h1 Sign In
+    form(action="/signin", method="post")
+        div
+            .form-container
+                p
+                    label(for="username") Username:                
+                    input(type="text", name="username")
+                p
+                    label(for="password") Password: 
+                    input(type="password", name="password")
+                
+        button(type="submit") Sign In
+        a(href='/')  Nevermind
+        if message
+            p= message
+    p
+    | Don't have an account yet?
+    a(href="/signup")    Sign Up Here!
+
