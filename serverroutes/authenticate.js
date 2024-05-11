@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const hash = require('./bcrypt');
+//const geo = require('node-geocoder');
+//const geocoder = geo({ provider: 'openstreetmap'});
+
 
 router.get('/signin', async (req, res) => {
-    res.render('signin', { erros: [], hideLogin: true });
+    res.render('signin', { errors: [], hideLogin: true });
 });
 
 router.get('/logout', async (req, res) => {
@@ -34,6 +37,10 @@ router.post('/signup', async (req, res) => {
     const username = req.body.username.trim();
     const p1 = req.body.password.trim();
     const p2 = req.body.password_re.trim();
+
+    if(firstname === '' || lastname === '', username==='', p1 ===''|| p2 ===''){
+        res.render('signup', {hideLogin: true, message: 'Please fill out all fields'});
+    }
     if (p1 != p2) {
         res.render('signup', { hideLogin: true, message: 'Passwords do not match!' });
         return;
@@ -49,5 +56,6 @@ router.post('/signup', async (req, res) => {
     req.session.user = await req.db.findUserById(id);
     res.redirect('/');
 });
+
 
 module.exports = router;

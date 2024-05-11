@@ -1,40 +1,58 @@
-extends layout.pug 
-
+extends layout.pug
 
 block contactspage
-    h1 Contact List 
-    a(href="/create") Create new contact 
-    table 
-        thead 
-            strong 
-                th Name 
-                th Phone 
-                th Email 
-                th Address 
-                th Contact 
-        tbody 
-            each item in contacts 
-                tr 
-                    td 
-                        a(href='/'+ item.id) #{item.firstname} #{item.lastname}
-                    td #{item.phone}
-                    td #{item.email}
-                    td #{item.street}, #{item.city}, #{item.state}, #{item.zip}, #{item.country} 
-                    
-                    td 
-                        input(checked = item.Contact_By_Phone ==1, type ='checkbox', disabled) 
-                        | Phone 
-                        br
-                        input(checked = item.Contact_By_Email ==1, type = 'checkbox', disabled) 
-                        | Email 
-                        br
-                        input(checked = item.Contact_By_Mail ==1, type = 'checkbox', disabled) 
-                        | Mail
+    h1 Contact List     
+        table 
+            thead 
+                tr
+                    th Name 
+                    th Phone 
+                    th Email 
+                    th Address 
+                    th Contact 
+            tbody 
+                each item in contacts 
+                    tr(data-lat=item.latitude data-lng=item.longitude onclick="flyToAddress(this)")  
+                        td 
+                            a(href='/' + item.id) #{item.firstname} #{item.lastname}
+                        td #{item.phone}
+                        td #{item.email}
+                        td #{item.address}
+                        
+                        td 
+                            input(checked = item.Contact_By_Phone == 1, type ='checkbox', disabled)
+                            | Phone 
+                            br
+                            input(checked = item.Contact_By_Email == 1, type = 'checkbox', disabled)
+                            | Email
+                            
+                            input(checked = item.Contact_By_Mail ==1, type = 'checkbox', disabled)
+                            | Mail 
 
-
-//- headers like the docttype does not have to be written because they will orginate from layout 
-//- so checkbox is initially diabled and can be enabled only through the edit, in a different page. 
-//- based on the checked ==1 the checkbox will be checked or not, so determines the status of the checkbox?
-//- selects the user's specfic userid and based on that displays information
-//- to fetch the specfic address in detail. 
-//- a for loop in pug that loops through the contacts array db
+        #map-container
+            #map
+                script.
+                    loadMap()
+     
+        style. 
+            #map-container {
+                position: relative;
+                height: 450px;
+                margin-bottom: 2rem;
+                margin-top: 2rem;
+                border: 1px solid black;
+            }
+            #map {
+                position: absolute; 
+                top: 0; 
+                bottom: 0; 
+                width: 100%;
+            }
+            tr {
+                cursor: pointer; 
+            }
+            tr:hover {
+                background-color: #C0C0C0;
+            }
+    h3
+        a(href="/create", class="create-contact") Create new contact

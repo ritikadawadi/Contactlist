@@ -2,14 +2,22 @@ Doctype
 html 
     head 
         title P2 Contacts 
-        link(rel ='stylesheet', href = 'https://cdn.jsdelivr.net/npm/water.css@2/out/light.css')
+        meta(name="viewport", content="width=device-width,initial-scale=1")
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        link(rel='stylesheet', type='text/css', href= "/style.css")
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="crossorigin=""></script>
+        script(src="./places.js")
+        link(rel="icon" href="favicon.ico")
     body 
-        if !hideLogin
-            if user 
-                span #{user.username}
-                a(href="/logout")  Sign Out
-            else 
-                a(href="/login")  Sign In 
+        .head1
+            if !hideLogin
+                if user 
+                    .user
+                        span #{user.username}
+                        a(href="/logout")  Sign Out
+                else 
+                    a(href="/signin")  Sign In 
             block contactspage
 
 //- if the button is not hidden 

@@ -2,55 +2,43 @@ extends layout.pug
 
 block contactspage
     h1 Update Contact
-    form(action ='/'+ contact.id , method ="post")
-        fieldset
-            legend Basic Information 
+    form(action ='/'+ contact.id + '/edit', method ="post")
+        fieldset.form-container
+            legend.info Basic Information 
             section
-                label(for="firstname") First Name:
+                label(for="firstname") First Name:          
                 input(type ="text",name ="firstname", value = contact.firstname)
             section 
-                label(for="lastname") Last Name: 
-                input(type ="text", name = "lastname", value = contact.lastname)
+                p
+                    label(for="lastname") Last Name:   
+                    input(type ="text", name = "lastname", value = contact.lastname)
             section 
-                label(for="phone") Phone:
-                input(type="text", name= "phone", value = contact.phone)
+                p
+                    label(for="phone") Phone:   
+                    input(type="text", name= "phone", value = contact.phone)
             section 
-                label(for="email") Email:
+                label(for="email") Email:   
                 input(type="text", name ="email", value = contact.email)
-        fieldset 
-            legend Address 
+        fieldset.form-container 
+            legend.info Address 
             section 
-                label(for="street") Street: 
-                input(type="text", name = "street", value = contact.street)
-            section
-                label(for="city") City: 
-                input(type="text", name ="city", value = contact.city)
-            section
-                label(for="state") State: 
-                input(type="text", name ="state", value = contact.state)
+                label(for="address") Address:  
+                input(type="text", name = "address", value = contact.address)
+        fieldset.form-container
+            legend.info Contact Preferences 
             section 
-                label(for="zip") Zip: 
-                input(type="text", name ="zip", value = contact.zip)
-            section 
-                label(for="country") Country: 
-                input(type="text", name ="country", value = contact.country)
-        fieldset 
-            legend Contact 
-            section 
-                input(type ="checkbox", name ="Contact_By_Phone", checked= contact.Contact_By_Email==1)
+                input(type ="checkbox", name ="Contact_By_Phone", checked= contact.Contact_By_Phone==1)
                 label(for="Contact_By_Phone") Contact by Phone 
             section
                 input(type ="checkbox", name ="Contact_By_Email", checked=contact.Contact_By_Email==1)
                 label(for="Contact_By_Email") Contact by Email   
-            section
-                input(type ="checkbox", name ="Contact_By_Mail", checked=contact.Contact_By_Mail==1)
-                label(for="Contact_By_Mail") Contact by Mail 
-                
-
-            button(type='submit') Update
-            a(href='/') Cancel 
-            if message 
-                p #{message}
+            section 
+                input(type = "checkbox", name = "Contact_By_Mail", checked = contact.Contact_By_Mail==1)
+                label(for="Contact_By_Mail") Contact by Mail
+        button(type='submit') Update
+        a(href='/')  Cancel 
+        if message 
+            p #{message}
 
 //- these basically prepopulate the data, unlike the create one in which user has to enter
 //- purpose of value: populates the value from contact

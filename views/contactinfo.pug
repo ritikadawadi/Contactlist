@@ -1,25 +1,26 @@
 extends layout.pug 
 
 block contactspage
+
     h1 Contact Information 
-    h2 #{contact.firstname} #{contact.lastname}
-    hr
     a(href='/') Back to List 
-    p 
-        strong Phone Number: 
-        span #{contact.phone}
-    i May #{contact.Contact_By_Phone ? 'be' : 'NOT be'} contacted by phone or text 
-    hr
-    p 
-        strong Email Address: 
-        span #{contact.mail}
-    i May #{contact.Contact_By_Email ? 'be' : 'NOT be'} contacted by email 
-    hr
-    p 
-        strong Mail: 
-        span #{contact.mail}
-    i May #{contact.Contact_By_Mail ? 'be' : 'NOT be'} contacted by mail 
-    hr
+    h2 #{contact.firstname} #{contact.lastname}
+    div.form-container
+        p 
+            strong Phone Number: 
+            span #{contact.phone}
+        i May #{contact.Contact_By_Phone ? 'be' : 'NOT be'} contacted by phone or text 
+        hr
+        p 
+            strong Email Address: 
+            span #{contact.mail}
+        i May #{contact.Contact_By_Email ? 'be' : 'NOT be'} contacted by email 
+        hr
+        p 
+            strong Address: 
+            span #{contact.address}
+        i May #{contact.Contact_By_Mail ? 'be' : 'NOT be'} contacted by mail
+        hr
     a(href='/'+ contact.id+ "/edit/") Edit Contact 
     br
     a(href='/'+ contact.id + "/delete/") Delete Contact

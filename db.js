@@ -2,7 +2,7 @@ require('dotenv').config();
 const Database = require('dbcmps369');
 const hash = require('./serverroutes/bcrypt');
 
-class ContactList  {
+class ContactClass  {
     constructor() {
         this.db = new Database();
     }
@@ -16,14 +16,12 @@ class ContactList  {
             { name: 'lastname', type: 'TEXT' },
             { name: 'phone', type: 'TEXT' },
             { name: 'email', type: 'TEXT' },
-            { name: 'street', type: 'TEXT' },
-            { name: 'city', type: 'TEXT' },
-            { name: 'state', type: 'TEXT' },
-            { name: 'zip', type: 'TEXT' },
-            { name: 'country', type: 'TEXT' },
-            { name: 'contact_by_email', type: 'INTEGER' },
-            { name: 'contact_by_phone', type: 'INTEGER' },
-            { name: 'contact_by_mail', type: 'INTEGER' }
+            { name: 'address', type: 'TEXT'},
+            { name: 'Contact_By_Email', type: 'INTEGER' },
+            { name: 'Contact_By_Phone', type: 'INTEGER' },
+            { name: 'Contact_By_Mail', type: 'INTEGER'},
+            { name: 'latitude', type: 'NUMERIC'},
+            {name: 'longitude', type: 'NUMERIC'}
         ], 'id');
 
 
@@ -47,21 +45,20 @@ class ContactList  {
         }
     }
 
-    async createContact(firstname,lastname,phone,email,street,city,state,zip,country,contact_by_email,contact_by_phone,contact_by_mail) {
+    async createContact(firstname,lastname,phone,email,address,contact_by_email,contact_by_phone, contact_by_mail, 
+        latitude, longitude) {
         const id = await this.db.create('Contact', [
             { column: 'firstname', value: firstname },
             { column: 'lastname', value: lastname },
             { column: 'phone', value: phone },
             { column: 'email', value: email },
-            { column: 'street', value: street },
-            { column: 'city', value: city },
-            { column: 'state', value: state },
-            { column: 'zip', value: zip },
-            { column: 'country', value: country },
-            { column: 'contact_by_email', value: contact_by_email },
-            { column: 'contact_by_phone', value: contact_by_phone },
-            { column: 'contact_by_mail', value: contact_by_mail},
-        ])
+            { column: 'address', value: address},
+            { column: 'Contact_By_Email', value: contact_by_email },
+            { column: 'Contact_By_Phone', value: contact_by_phone },
+            { column: 'Contact_By_Mail', value: contact_by_mail},
+            { column: 'latitude', value: latitude},
+            { column: 'longitude', value: longitude}         
+        ]);
         return id;
     }
 
@@ -70,25 +67,24 @@ class ContactList  {
             { column: 'firstname', value: firstname },
             { column: 'lastname', value: lastname },
             { column: 'username', value: username },
-            { column: 'password', value: password },
+            { column: 'password', value: hash(password)},
         ])
         return id;
     }
 
-    async updateContact(id, firstname,lastname,phone,email,street,city,state,zip,country,contact_by_email,contact_by_phone,contact_by_mail) {
+    async updateContact(id, firstname,lastname,phone,email,address,contact_by_email,contact_by_phone,
+        contact_by_mail,latitude,longitude) {
         await this.db.update('Contact', [
             { column: 'firstname', value: firstname },
             { column: 'lastname', value: lastname },
             { column: 'phone', value: phone },
             { column: 'email', value: email },
-            { column: 'street', value: street },
-            { column: 'city', value: city },
-            { column: 'state', value: state },
-            { column: 'zip', value: zip },
-            { column: 'country', value: country },
-            { column: 'contact_by_email', value: contact_by_email },
-            { column: 'contact_by_phone', value: contact_by_phone },
-            { column: 'contact_by_mail', value: contact_by_mail},
+            { column: 'address', value: address},
+            { column: 'Contact_By_Email', value: contact_by_email },
+            { column: 'Contact_By_Phone', value: contact_by_phone },
+            { column: 'Contact_By_Mail', value: contact_by_mail},
+            { column: 'latitude', value: latitude},
+            { column: 'longitude', value: longitude}
         ], [{ column: 'id', value: id }]);
     }
 
@@ -128,4 +124,4 @@ class ContactList  {
 
 }
 
-module.exports = ContactList;
+module.exports = ContactClass;

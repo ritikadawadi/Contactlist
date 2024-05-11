@@ -89,6 +89,13 @@ a:hover {
     width: 100%;
     max-width: 18em;
 }
+  
+#main-container {
+    min-height: 80vh; /* Ensure minimum height */
+    max-height: 90vh; /* Maximum height before scrolling */
+    overflow-y: auto; /* Allows scrolling within the container */
+  }
+  
 
 /* inputs */
 button,
